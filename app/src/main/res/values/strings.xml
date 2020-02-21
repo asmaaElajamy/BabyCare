@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Baby Care</string>
+    <string name="btn_welcom">Welcome</string>
+    <string name="btn_signup">Sign Up</string>
+    <string name="btn_login">Log In</string>
+    <string name="baby_information">Baby Information</string>
+    <string name="logo">logo</string>
+    <string name="name">Name</string>
+    <string name="Weight">Weight</string>
+    <string name="todo">TODO</string>
+    <string name="length">Length</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="this_is_second_activity">This is Second activity</string>
+    <string name="baby_care">Baby Care</string>
+    <string-array name="genderlist">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+</resources>
