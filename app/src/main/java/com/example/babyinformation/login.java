@@ -39,7 +39,19 @@ public class login extends AppCompatActivity {
         Password = (EditText) findViewById(R.id.etPassword);
         Login = (Button) findViewById(R.id.loginbtn);
 
+        Login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Login();
+            }
+        });
     }
+
+    public void Login(){
+        Intent intent = new Intent(this, SecondActivity.class);
+        startActivity(intent);
+    }
+
     private boolean validateEmail() {
         String emailInput = Email.getText().toString().trim();
 
