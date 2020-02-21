@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 public class login extends AppCompatActivity {
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
