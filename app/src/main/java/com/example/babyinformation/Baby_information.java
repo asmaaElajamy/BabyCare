@@ -6,12 +6,14 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -20,16 +22,17 @@ public class Baby_information extends AppCompatActivity {
     private Button newbaby;
     String name;
     int weight, length;
-    String[] gender = {"Male","Female"};
+    String[] gender = {"Male", "Female"};
     TextView cal;
     Calendar mCurrentdDate;
-    int day, month ,year;
+    int day, month, year;
 
     EditText namebaby;
     EditText lengthbaby;
     EditText weightbaby;
     Button submitbutton;
-
+    Spinner Gender;
+    TextView Dateofbirth;
 
 
     @Override
@@ -49,10 +52,8 @@ public class Baby_information extends AppCompatActivity {
         submitbutton = (Button) findViewById(R.id.submitbutton);
         submitbutton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                name = namebaby.getText().toString();
-                weight = Integer.valueOf(weightbaby.getText().toString());
-                length = Integer.valueOf(lengthbaby.getText().toString());
+            public void onClick(View view) {
+                submitValidation();
             }
         });
 
@@ -60,11 +61,10 @@ public class Baby_information extends AppCompatActivity {
         //////////////////////////////////////////////// End Baby name //////////////////////////////////////////////////
 
 
-
         //////////////////////////////////////////////// start spinner /////////////////////////////////////////////////
         Spinner spinner = findViewById(R.id.gender);
 
-        SpinAdapter adapter = new SpinAdapter(this,R.layout.customspinner,gender);
+        SpinAdapter adapter = new SpinAdapter(this, R.layout.customspinner, gender);
 
         spinner.setAdapter(adapter);
         //////////////////////////////////////////////// End spinner /////////////////////////////////////////////////
@@ -79,23 +79,23 @@ public class Baby_information extends AppCompatActivity {
         month = mCurrentdDate.get(Calendar.MONTH);
         year = mCurrentdDate.get(Calendar.YEAR);
 
-        month = month+1;
+        month = month + 1;
 
-        cal.setText(day+"/"+month+"/"+year);
+        cal.setText(day + "/" + month + "/" + year);
 
         cal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(Baby_information.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        monthOfYear = monthOfYear+1;
-                        cal.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
-                    }
-                }, year , month , day);
-                datePickerDialog.show();
-            }
-        }
+                                   @Override
+                                   public void onClick(View v) {
+                                       DatePickerDialog datePickerDialog = new DatePickerDialog(Baby_information.this, new DatePickerDialog.OnDateSetListener() {
+                                           @Override
+                                           public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                               monthOfYear = monthOfYear + 1;
+                                               cal.setText(dayOfMonth + "/" + monthOfYear + "/" + year);
+                                           }
+                                       }, year, month, day);
+                                       datePickerDialog.show();
+                                   }
+                               }
 
         );
         //////////////////////////////////////////////// End Date /////////////////////////////////////////////////
@@ -105,20 +105,54 @@ public class Baby_information extends AppCompatActivity {
         newbaby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openBaby_information2();
+                newbabyValidation();
             }
         });
     }
 
-    
 
 
-    public void openBaby_information2(){
-        Intent intent = new Intent(this, Baby_information2.class);
-        startActivity(intent);
+
+
+    /////////////////////////// Validation ////////////////////////
+    private void submitValidation() {
+        if (namebaby.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Name is Required", Toast.LENGTH_SHORT).show();
+            namebaby.setError("Name is required");
+        }
+        if ( (weightbaby.getText().toString().length() < 1) || (weightbaby.getText().toString().length() > 2) ) {
+            weightbaby.setError("Weight Is Invalid");
+            Toast.makeText(this, "Weight must be Entered in KG", Toast.LENGTH_LONG).show();
+        }
+        if (lengthbaby.getText().toString().length() < 2) {
+            lengthbaby.setError("Length Is Invalid");
+            Toast.makeText(this, "Length must be Entered in CM", Toast.LENGTH_LONG).show();
+        } else {
+            Intent submit = new Intent(this, SecondActivity.class);
+            startActivity(submit);
+            finish();
+        }
+
     }
 
+    /////////////////////// new baby validation ////////////////
+    private void newbabyValidation() {
+        if (namebaby.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Name is Required", Toast.LENGTH_SHORT).show();
+            namebaby.setError("Name is required");
+        }
+        if ( (weightbaby.getText().toString().length() < 1) || (weightbaby.getText().toString().length() > 2) ) {
+            weightbaby.setError("Weight Is Invalid");
+            Toast.makeText(this, "Weight must be Entered in KG", Toast.LENGTH_LONG).show();
+        }
+        if (lengthbaby.getText().toString().length() < 2) {
+            lengthbaby.setError("Length Is Invalid");
+            Toast.makeText(this, "Length must be Entered in CM", Toast.LENGTH_LONG).show();
+        } else {
+            Intent newbaby = new Intent(this, Baby_information2.class);
+            startActivity(newbaby);
+            finish();
+        }
 
-
-
+    }
 }
