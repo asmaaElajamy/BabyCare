@@ -23,7 +23,7 @@ public class Welcome extends AppCompatActivity {
         btn_Signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intsign = new Intent(Welcome.this, Baby_information.class);
+                Intent intsign = new Intent(Welcome.this, userinfo.class);
                 startActivity(intsign);
             }
         });

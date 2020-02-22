@@ -120,7 +120,7 @@ public class Baby_information extends AppCompatActivity {
             Toast.makeText(this, "Name is Required", Toast.LENGTH_SHORT).show();
             namebaby.setError("Name is required");
         }
-        if ( (weightbaby.getText().toString().length() < 1) || (weightbaby.getText().toString().length() > 2) ) {
+        if ( (weightbaby.getText().toString().length() > 1) || (weightbaby.getText().toString().length() < 2) ) {
             weightbaby.setError("Weight Is Invalid");
             Toast.makeText(this, "Weight must be Entered in KG", Toast.LENGTH_LONG).show();
         }

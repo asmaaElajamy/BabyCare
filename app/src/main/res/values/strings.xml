@@ -18,4 +18,12 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string name="Doctor">Doctor</string>
+    <string name="Baby_sitter">BabySitter</string>
+    <string name="Parent">Parent</string>
+    <string name="invalide_name">Name is required</string>
+    <string name="invalide_email">Please Enter Valid Email</string>
+    <string name="invalide_password">Enter 6 digit password</string>
+    <string name="user_information">User Information</string>
+
 </resources>
